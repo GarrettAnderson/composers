@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  famous_piece: MyString
+  era_id: 1
+  birth_date: 2019-03-26
+  death_date: 2019-03-26
+  description: MyText
+
+two:
+  name: MyString
+  famous_piece: MyString
+  era_id: 1
+  birth_date: 2019-03-26
+  death_date: 2019-03-26
+  description: MyText
