@@ -3,8 +3,13 @@ class ComposersController < ApplicationController
 
   # GET /composers
   def index
-    @composers = Composer.all
+    name = params[:name]
 
+    if name
+      @composers = Composer.where("name ilike ?", "%#{name}%")
+    else
+      @composers = Composer.all
+    end
     render json: @composers
   end
 
@@ -39,13 +44,14 @@ class ComposersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_composer
-      @composer = Composer.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def composer_params
-      params.require(:composer).permit(:name, :famous_piece, :era_id, :birth_date, :death_date, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_composer
+    @composer = Composer.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def composer_params
+    params.require(:composer).permit(:name, :famous_piece, :era_id, :birth_date, :death_date, :description)
+  end
 end
