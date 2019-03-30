@@ -3,24 +3,27 @@ class ComposersController < ApplicationController
 
   # GET /composers
   def index
-    name = params[:name]
+    @composers = Composer.all
+    # name = params[:name]
 
-    if name
-      @composers = Composer.where("name ilike ?", "%#{name}%")
-    else
-      @composers = Composer.all
-    end
+    # if name
+    #   @composers = Composer.where("name ilike ?", "%#{name}%")
+    # else
+    #   @composers = Composer.all
+    # end
     render json: @composers
   end
 
   # GET /composers/1
   def show
+    @composers = Composer.find(params[:id])
     render json: @composer
   end
 
   # POST /composers
   def create
-    @composer = Composer.new(composer_params)
+    @era = Era.find(params[:era_id])
+    @composer = Composer.new(params[:id])
 
     if @composer.save
       render json: @composer, status: :created, location: @composer

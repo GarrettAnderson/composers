@@ -10,6 +10,7 @@ class ErasController < ApplicationController
 
   # GET /eras/1
   def show
+    @eras = Era.find(params[:id])
     render json: @era
   end
 
