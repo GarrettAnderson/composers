@@ -3,6 +3,7 @@ class ComposersController < ApplicationController
 
   # GET /composers
   def index
+    @era = Era.find(params[:era_id])
     @composers = Composer.all
     # name = params[:name]
 
@@ -23,10 +24,10 @@ class ComposersController < ApplicationController
   # POST /composers
   def create
     @era = Era.find(params[:era_id])
-    @composer = Composer.new(params[:id])
+    @composer = @era.composers.new(composer_params)
 
     if @composer.save
-      render json: @composer, status: :created, location: @composer
+      render json: @composer, status: :created, location: [@era, @composer]
     else
       render json: @composer.errors, status: :unprocessable_entity
     end
