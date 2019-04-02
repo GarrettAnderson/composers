@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_03_27_173431) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["era_id"], name: "index_composers_on_era_id"
   end
 
   create_table "eras", force: :cascade do |t|
@@ -35,4 +36,5 @@ ActiveRecord::Schema.define(version: 2019_03_27_173431) do
     t.integer "date_end"
   end
 
+  add_foreign_key "composers", "eras"
 end
