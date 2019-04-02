@@ -4,7 +4,7 @@ class ComposersController < ApplicationController
   # GET /composers
   def index
     @era = Era.find(params[:era_id])
-    @composers = Composer.all
+    @composers = @era.composers.all
     # name = params[:name]
 
     # if name
@@ -17,8 +17,8 @@ class ComposersController < ApplicationController
 
   # GET /composers/1
   def show
-    @composers = Composer.find(params[:id])
-    render json: @composer
+    # @composers = Composer.find(params[:id])
+    # render json: @composer
   end
 
   # POST /composers
@@ -51,6 +51,7 @@ class ComposersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_composer
+    @era = Era.find(params[:era_id])
     @composer = Composer.find(params[:id])
   end
 

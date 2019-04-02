@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_27_173431) do
+ActiveRecord::Schema.define(version: 2019_04_02_050142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,8 @@ ActiveRecord::Schema.define(version: 2019_03_27_173431) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["era_id"], name: "index_composers_on_era_id"
+    t.bigint "eras_id"
+    t.index ["eras_id"], name: "index_composers_on_eras_id"
   end
 
   create_table "eras", force: :cascade do |t|
@@ -36,5 +37,5 @@ ActiveRecord::Schema.define(version: 2019_03_27_173431) do
     t.integer "date_end"
   end
 
-  add_foreign_key "composers", "eras"
+  add_foreign_key "composers", "eras", column: "eras_id"
 end
