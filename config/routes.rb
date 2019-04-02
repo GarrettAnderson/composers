@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :eras do
-    resources :composers do
+  scope :api, defaults: { format: :json } do
+    resources :eras do
+      resources :composers
+      end
     end
-  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
+  end
